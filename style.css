@@ -58,6 +58,11 @@ header{
                     font-size: medium;
                     color: rgb(182, 182, 182);
                     border-radius: 10px ;
+                    >p{
+                        color: white;
+                        text-transform: uppercase;
+                        font-weight: 600;
+                    }
                 }
                 >h2{
                     font-size: 5.5em;
@@ -119,13 +124,29 @@ header{
                 width: 100%;
                 border: 0.5px solid rgba(255, 255, 255, 0.541);
             }
-            >p{
-                padding: 5px 1em;
-                border-radius: 1em;
+            .today{
                 width: auto;
-                height: auto;
-                background-color: rgba(128, 128, 128, 0.555);
-                color: whitesmoke;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                color: white;
+                border-radius: 5px;
+                padding: 5px;
+                >a{
+                    width: auto;
+                    text-decoration: none;
+                    color: white;
+                    font-weight: bold;
+                    .boton-hoy{
+                        width: auto;
+                        background-color:#2c2e35be;
+                        box-shadow: 1px 1px 4px black;
+                        border-radius:5px;
+                        padding: 0.5em;
+                    }
+                }
             }
         }
     }

@@ -1,4 +1,4 @@
-import { ubc, range_clima, depa,sunR,sunS,tem_min,tem_max,sen,hum} from "./app.js";
+import { ubc, range_clima, depa,sunR,sunS,tem_min,tem_max,sen,hum,enl} from "./app.js";
 import suncalc from 'https://cdn.jsdelivr.net/npm/suncalc@1.9.0/+esm';
 const fondo=document.body;
 window.onload = function () {
@@ -103,7 +103,7 @@ window.onload = function () {
         const data2 = dataArray[1];
 
         console.log('Datos de la primera solicitud:', data1);
-        const {main:{feels_like,humidity,temp,temp_max,temp_min},weather,sys:{sunrise,sunset}}=data1;
+        const {id,main:{feels_like,humidity,temp,temp_max,temp_min},weather,sys:{sunrise,sunset}}=data1;
         const tem = Math.floor(temp - 273.15);
         const tem_mx = Math.floor(temp_max - 273.15);
         const tem_mn = Math.floor(temp_min - 273.15);
@@ -114,9 +114,12 @@ window.onload = function () {
         hum.innerHTML=`${humidity}%`;
         let urlIcon=`https://openweathermap.org/img/wn/${weather[0].icon}@2x.png`;
         let Icono = document.createElement('img');
+        let p_des = document.createElement('p');
         Icono.src=urlIcon;
+        p_des.innerHTML=weather[0].description;
         Icono.style.maxWidth="6em";
-        range_clima.appendChild(Icono);
+        range_clima.appendChild(Icono)
+        range_clima.appendChild(p_des);
         const distrito = data2[0].name;
         console.log('Datos de la segunda solicitud:', data2[0]);
         ubc.innerHTML=distrito+` ${tem}°C`;
@@ -125,6 +128,7 @@ window.onload = function () {
         sunR.innerHTML=`${hAma}:${mAma}`;
         sunS.innerHTML=`${hAta}:${mAta}`;
         infoGoogle(lat, lon);
+        enl.setAttribute("href",`https://openweathermap.org/city/${id}`);
       })
       .catch(error => {
         console.error('Error:', error);
@@ -171,4 +175,3 @@ window.onload = function () {
     return {hAma,hAta,mAma,mAta};
   }
 };
-

@@ -7,7 +7,8 @@ const tem_min=document.getElementById('temp-min');
 const tem_max=document.getElementById('temp-max');
 const sen = document.getElementById('sens');
 const hum = document.getElementById('humedad');
-export{ubc,range_clima,depa,sunR,sunS,tem_min,tem_max,sen,hum};
+const enl = document.getElementById('enlace');
+export{ubc,range_clima,depa,sunR,sunS,tem_min,tem_max,sen,hum,enl};
 
 
 
