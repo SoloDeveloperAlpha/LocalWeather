@@ -1,0 +1,175 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+}
+
+body{
+    width: 100%;
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+header{
+        width: 100%;
+        height: 4em;
+        position: absolute;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+    main{
+        width: 100%;
+        min-width: 390px;
+        height: 100vh;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-areas: "cont2 cont2 cont cont";
+        padding: 4em;
+        .contenedor2{
+            width: 100%;
+            height: 100%;
+            max-height: 487px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            grid-area: cont2;
+            #fecha-hora{
+                display: flex;
+                flex-direction: column;
+                gap: 0.5em;
+                >h2,h3{
+                    color: white;
+                    text-shadow: 1px 1px 2px #2c2e35e3;
+                }
+                >h2{
+                    font-size: 3em;
+                }
+            }
+            #lugar-temp{
+                #clima-rango-temp{
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: start;
+                    align-items: center;
+                    font-size: medium;
+                    color: rgb(182, 182, 182);
+                    border-radius: 10px ;
+                }
+                >h2{
+                    font-size: 5.5em;
+                    color: white;
+                    text-wrap: wrap;
+                    text-shadow: 2px 2px 4px #2c2e35be;
+                }
+                >p{
+                    color: white;
+                    text-align: center;
+                    max-width: 8em;
+                    padding: 0.2em 0.5em;
+                    border-radius: 10px;
+                    background-color: rgba(0, 0, 0, 0.2);
+                    box-shadow: inset 1px 1px 2px rgba(255, 255, 255, 0.6);
+                }
+            }
+        }
+        .contenedor{
+            width: 350px;
+            min-width: 300px;
+            height: 100%;
+            max-height: 487px;
+            background-color: rgba(0, 0, 0, 0.2);
+            box-shadow: inset 1px 1px 2px rgba(255, 255, 255, 0.6);
+            padding: 2em;
+            border-radius: 10px;
+            grid-area: cont;
+            display: flex;
+            flex-direction: column;
+            justify-content: start;
+            align-items: center;
+            gap: 1em;
+            margin: auto;
+            #clima1,#clima2,#clima3{
+                width: 100%;
+                height: 4.5em;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                .datos{
+                    width: 50%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: start;
+                    align-items: start;
+                    color: white;
+                    text-shadow: 1px 1px 4px #2c2e35be;
+                    >h5{
+                        font-weight: 400;
+                    }
+                    >p{
+                        font-size: 2.8em;
+                        font-weight: 300;
+                    }
+                }
+            }
+            #raya{
+                width: 100%;
+                border: 0.5px solid rgba(255, 255, 255, 0.541);
+            }
+            >p{
+                padding: 5px 1em;
+                border-radius: 1em;
+                width: auto;
+                height: auto;
+                background-color: rgba(128, 128, 128, 0.555);
+                color: whitesmoke;
+            }
+        }
+    }
+
+
+@media screen and (min-width:768px) and (max-width:1023px) {
+    main{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas: "cont2 cont";
+        padding: 2em;
+        .contenedor2{
+            width: 100%;
+            grid-area: cont2;
+            #lugar-temp{
+                font-size: 0.7em;
+            }
+        }
+        .contenedor{
+            width: 100%;
+            grid-area: cont;
+        }
+    }
+    
+}
+
+@media screen and (max-width:767px) {
+    main{
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-areas: "cont2"
+                             "cont";
+        padding: 1em;
+        .contenedor2{
+            width: 100%;
+            grid-area: cont2;
+            #lugar-temp{
+                font-size: 0.7em;
+            }
+        }
+        .contenedor{
+            width: 100%;
+            margin-top: 3em;
+            grid-area: cont;
+        }
+    }
+}

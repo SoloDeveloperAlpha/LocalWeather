@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="images/nube.png" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Aplicacion del Clima</title>
+  </head>
+  <body>
+    <header></header>
+    <main>
+      <div class="contenedor2">
+        <div id="fecha-hora">
+          <h3 id="fecha"></h3>
+          <h2 id="hora"></h2>
+        </div>
+        <div id="lugar-temp">
+          <div id="clima-rango-temp"></div>
+          <h2 id="ubicacion"></h2>
+          <p id="departamento"></p>
+        </div>
+      </div>
+      <div class="contenedor">
+        <div id="clima1">
+          <div class="datos">
+            <h5>AMANECER</h5>
+            <p id="sunrise"></p>
+          </div>
+          <div class="datos">
+            <h5>ATARDECER</h5>
+            <p id="sunset"></p>
+          </div>
+        </div>
+        <div id="clima2">
+          <div class="datos">
+            <h5>TEMP MIN</h5>
+            <p id="temp-min"></p>
+          </div>
+          <div class="datos">
+            <h5>TEMP MAX</h5>
+            <p id="temp-max"></p>
+          </div>
+        </div>
+        <div id="clima3">
+          <div class="datos">
+            <h5>SENSACION C°</h5>
+            <p id="sens"></p>
+          </div>
+          <div class="datos">
+            <h5>HUMEDAD</h5>
+            <p id="humedad"></p>
+          </div>
+        </div>
+        <div id="raya"></div>
+      </div>
+    </main>
+    <script type="module" src="app.js"></script>
+
+    <script type="module" src="OpenWeather.js"></script>
+  </body>
+</html>
