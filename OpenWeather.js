@@ -69,16 +69,28 @@ window.onload = function () {
   }
   function fondoClima(hora){
     if(6<=hora&&hora<17){
-      fondo.style.backgroundImage="url('images/fondo.jpg')";
+      fondo.style.background="rgb(1,0,133)";
+      fondo.style.background="-moz-linear-gradient(90deg, rgba(1,0,133,1) 0%, rgba(0,209,255,1) 50%, rgba(253,255,188,1) 100%)";
+      fondo.style.background="-webkit-linear-gradient(90deg, rgba(1,0,133,1) 0%, rgba(0,209,255,1) 50%, rgba(253,255,188,1) 100%)";
+      fondo.style.background="linear-gradient(45deg, rgba(1,0,133,1) 0%, rgba(0,209,255,1) 50%, rgba(253,255,188,1) 100%)";
     }
     else {
       if(17<=hora&&hora<19){
-      fondo.style.backgroundImage="url('images/tarde.jpg')";}
+        fondo.style.background="rgb(253,255,188)";
+        fondo.style.background="-moz-linear-gradient(90deg, rgba(253,255,188,1) 0%, rgba(199,117,13,1) 50%, rgba(73,42,4,1) 100%)";
+        fondo.style.background="-webkit-linear-gradient(90deg, rgba(253,255,188,1) 0%, rgba(199,117,13,1) 50%, rgba(73,42,4,1) 100%)";
+        fondo.style.background="linear-gradient(45deg, rgba(253,255,188,1) 0%, rgba(199,117,13,1) 50%, rgba(73,42,4,1) 100%)";}
       else {
         if(19<=hora&&hora<=23){
-        fondo.style.backgroundImage="url('images/noche.jpg')";}
+          fondo.style.background="rgb(105,47,53)";
+          fondo.style.background="-moz-linear-gradient(90deg, rgba(105,47,53,1) 0%, rgba(74,47,105,1) 6%, rgba(36,45,99,1) 17%, rgba(3,9,50,1) 54%)";
+          fondo.style.background="-webkit-linear-gradient(90deg, rgba(105,47,53,1) 0%, rgba(74,47,105,1) 6%, rgba(36,45,99,1) 17%, rgba(3,9,50,1) 54%)";
+          fondo.style.background="linear-gradient(45deg, rgba(105,47,53,1) 0%, rgba(74,47,105,1) 6%, rgba(36,45,99,1) 17%, rgba(3,9,50,1) 54%)";}
         else{
-      fondo.style.backgroundImage="url('images/noche.jpg')";}}}
+          fondo.style.background="rgb(105,47,53)";
+          fondo.style.background="-moz-linear-gradient(90deg, rgba(105,47,53,1) 0%, rgba(74,47,105,1) 6%, rgba(36,45,99,1) 17%, rgba(3,9,50,1) 54%)";
+          fondo.style.background="-webkit-linear-gradient(90deg, rgba(105,47,53,1) 0%, rgba(74,47,105,1) 6%, rgba(36,45,99,1) 17%, rgba(3,9,50,1) 54%)";
+          fondo.style.background="linear-gradient(45deg, rgba(105,47,53,1) 0%, rgba(74,47,105,1) 6%, rgba(36,45,99,1) 17%, rgba(3,9,50,1) 54%)";}}}
   }
 
   function callClima(lat, long) {

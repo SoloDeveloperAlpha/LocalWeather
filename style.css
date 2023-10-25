@@ -8,9 +8,10 @@
 
 body{
     width: 100%;
-    height: 100vh;
+    height: auto;
     background-repeat: no-repeat;
     background-position: center;
+    background-size: cover;
 }
 header{
         width: 100%;
@@ -24,7 +25,7 @@ header{
     main{
         width: 100%;
         min-width: 390px;
-        height: 100vh;
+        height: auto;
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr;
         grid-template-areas: "cont2 cont2 cont cont";
@@ -50,6 +51,8 @@ header{
                 }
             }
             #lugar-temp{
+                display: flex;
+                flex-direction: column;
                 #clima-rango-temp{
                     display: flex;
                     flex-direction: row;
@@ -84,8 +87,8 @@ header{
         .contenedor{
             width: 350px;
             min-width: 300px;
-            height: 100%;
-            max-height: 487px;
+            height: 487px;
+            max-height: 600px;
             background-color: rgba(0, 0, 0, 0.2);
             box-shadow: inset 1px 1px 2px rgba(255, 255, 255, 0.6);
             padding: 2em;
@@ -154,6 +157,7 @@ header{
 
 @media screen and (min-width:768px) and (max-width:1023px) {
     main{
+        height: 100vh;
         display: grid;
         grid-template-columns: 1fr 1fr;
         grid-template-areas: "cont2 cont";
@@ -161,8 +165,22 @@ header{
         .contenedor2{
             width: 100%;
             grid-area: cont2;
+            #fecha-hora{
+                >h2,h3{
+                    color: white;
+                    text-shadow: 1px 1px 2px #2c2e35e3;
+                }
+                >h2{
+                    font-size: 4em;
+                }
+            }
             #lugar-temp{
+                gap: 4em;
                 font-size: 0.7em;
+                >p{
+                    
+                    font-size: 1.5em;
+                }
             }
         }
         .contenedor{
@@ -175,6 +193,7 @@ header{
 
 @media screen and (max-width:767px) {
     main{
+        height: 200vh;
         display: grid;
         grid-template-columns: 1fr;
         grid-template-areas: "cont2"
@@ -182,14 +201,32 @@ header{
         padding: 1em;
         .contenedor2{
             width: 100%;
+            height: 100vh;
             grid-area: cont2;
-            #lugar-temp{
-                font-size: 0.7em;
+            #fecha-hora{
+                >h2,h3{
+                    color: white;
+                    text-shadow: 1px 1px 2px #2c2e35e3;
+                }
+                >h2{
+                    font-size: 5em;
+                }
             }
+            #lugar-temp{
+                gap: 4em;
+                font-size: 0.7em;
+                >p{
+                    
+                    font-size: 2em;
+                }
+            }
+            
         }
         .contenedor{
             width: 100%;
-            margin-top: 3em;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
             grid-area: cont;
         }
     }
