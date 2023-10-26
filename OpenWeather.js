@@ -70,27 +70,27 @@ window.onload = function () {
   function fondoClima(hora){
     if(6<=hora&&hora<17){
       fondo.style.background="rgb(1,0,133)";
-      fondo.style.background="-moz-linear-gradient(90deg, rgba(1,0,133,1) 0%, rgba(0,209,255,1) 50%, rgba(253,255,188,1) 100%)";
-      fondo.style.background="-webkit-linear-gradient(90deg, rgba(1,0,133,1) 0%, rgba(0,209,255,1) 50%, rgba(253,255,188,1) 100%)";
-      fondo.style.background="linear-gradient(45deg, rgba(1,0,133,1) 0%, rgba(0,209,255,1) 50%, rgba(253,255,188,1) 100%)";
+      fondo.style.background="-moz-linear-gradient(0deg, rgba(1,0,133,1) 0%, rgba(0,209,255,1) 50%, rgba(253,255,188,1) 100%)";
+      fondo.style.background="-webkit-linear-gradient(0deg, rgba(1,0,133,1) 0%, rgba(0,209,255,1) 50%, rgba(253,255,188,1) 100%)";
+      fondo.style.background="linear-gradient(0deg, rgba(1,0,133,1) 0%, rgba(0,209,255,1) 50%, rgba(253,255,188,1) 100%)";
     }
     else {
       if(17<=hora&&hora<19){
-        fondo.style.background="rgb(253,255,188)";
-        fondo.style.background="-moz-linear-gradient(90deg, rgba(253,255,188,1) 0%, rgba(199,117,13,1) 50%, rgba(73,42,4,1) 100%)";
-        fondo.style.background="-webkit-linear-gradient(90deg, rgba(253,255,188,1) 0%, rgba(199,117,13,1) 50%, rgba(73,42,4,1) 100%)";
-        fondo.style.background="linear-gradient(45deg, rgba(253,255,188,1) 0%, rgba(199,117,13,1) 50%, rgba(73,42,4,1) 100%)";}
+        fondo.style.background="rgb(255,190,43)";
+        fondo.style.background="-moz-linear-gradient(0deg, rgba(255,190,43,1) 0%, rgba(249,224,168,1) 18%, rgba(151,166,251,1) 59%, rgba(66,95,255,1) 100%)";
+        fondo.style.background="-webkit-linear-gradient(0deg, rgba(255,190,43,1) 0%, rgba(249,224,168,1) 18%, rgba(151,166,251,1) 59%, rgba(66,95,255,1) 100%)";
+        fondo.style.background="linear-gradient(0deg, rgba(255,190,43,1) 0%, rgba(249,224,168,1) 18%, rgba(151,166,251,1) 59%, rgba(66,95,255,1) 100%)";}
       else {
         if(19<=hora&&hora<=23){
-          fondo.style.background="rgb(105,47,53)";
-          fondo.style.background="-moz-linear-gradient(90deg, rgba(105,47,53,1) 0%, rgba(74,47,105,1) 6%, rgba(36,45,99,1) 17%, rgba(3,9,50,1) 54%)";
-          fondo.style.background="-webkit-linear-gradient(90deg, rgba(105,47,53,1) 0%, rgba(74,47,105,1) 6%, rgba(36,45,99,1) 17%, rgba(3,9,50,1) 54%)";
-          fondo.style.background="linear-gradient(45deg, rgba(105,47,53,1) 0%, rgba(74,47,105,1) 6%, rgba(36,45,99,1) 17%, rgba(3,9,50,1) 54%)";}
+          fondo.style.background="rgb(99,127,158)";
+          fondo.style.background="-moz-linear-gradient(0deg, rgba(99,127,158,1) 0%, rgba(98,129,185,1) 33%, rgba(65,84,148,1) 61%, rgba(41,56,106,1) 100%)";
+          fondo.style.background="-webkit-linear-gradient(0deg, rgba(99,127,158,1) 0%, rgba(98,129,185,1) 33%, rgba(65,84,148,1) 61%, rgba(41,56,106,1) 100%)";
+          fondo.style.background="linear-gradient(0deg, rgba(99,127,158,1) 0%, rgba(98,129,185,1) 33%, rgba(65,84,148,1) 61%, rgba(41,56,106,1) 100%)";}
         else{
-          fondo.style.background="rgb(105,47,53)";
-          fondo.style.background="-moz-linear-gradient(90deg, rgba(105,47,53,1) 0%, rgba(74,47,105,1) 6%, rgba(36,45,99,1) 17%, rgba(3,9,50,1) 54%)";
-          fondo.style.background="-webkit-linear-gradient(90deg, rgba(105,47,53,1) 0%, rgba(74,47,105,1) 6%, rgba(36,45,99,1) 17%, rgba(3,9,50,1) 54%)";
-          fondo.style.background="linear-gradient(45deg, rgba(105,47,53,1) 0%, rgba(74,47,105,1) 6%, rgba(36,45,99,1) 17%, rgba(3,9,50,1) 54%)";}}}
+          fondo.style.background="rgb(99,127,158)";
+          fondo.style.background="-moz-linear-gradient(0deg, rgba(99,127,158,1) 0%, rgba(98,129,185,1) 33%, rgba(65,84,148,1) 61%, rgba(41,56,106,1) 100%)";
+          fondo.style.background="-webkit-linear-gradient(0deg, rgba(99,127,158,1) 0%, rgba(98,129,185,1) 33%, rgba(65,84,148,1) 61%, rgba(41,56,106,1) 100%)";
+          fondo.style.background="linear-gradient(0deg, rgba(99,127,158,1) 0%, rgba(98,129,185,1) 33%, rgba(65,84,148,1) 61%, rgba(41,56,106,1) 100%)";}}}
   }
 
   function callClima(lat, long) {
