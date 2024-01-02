@@ -1,96 +1,128 @@
-import { ubc, range_clima, depa,sunR,sunS,tem_min,tem_max,sen,hum,enl} from "./app.js";
-import suncalc from 'https://cdn.jsdelivr.net/npm/suncalc@1.9.0/+esm';
-const fondo=document.body;
+import {
+  ubc,
+  range_clima,
+  depa,
+  sunR,
+  sunS,
+  tem_min,
+  tem_max,
+  sen,
+  hum,
+  enl,
+} from "./app.js";
+import suncalc from "https://cdn.jsdelivr.net/npm/suncalc@1.9.0/+esm";
+const fondo = document.body;
 window.onload = function () {
-  const apiKey = '3ba5d66a72148294071dfa560f89752c';
-  const googleApiKey = 'AIzaSyApV4iNXBzlRGPc3bQkRprnxlSTYLo4fOM';
-  const date= document.getElementById('fecha');
-  const time=document.getElementById('hora');
-  var{fecha,soloHora,soloMin}=actualizarFechaHora();
-  let min =soloMin;
-  date.innerHTML=`${fecha}`;
-  if(min<10){
-    time.innerHTML=`${soloHora}:0${soloMin}`;
+  const apiKey = "3ba5d66a72148294071dfa560f89752c";
+  const googleApiKey = "AIzaSyApV4iNXBzlRGPc3bQkRprnxlSTYLo4fOM";
+  const date = document.getElementById("fecha");
+  const time = document.getElementById("hora");
+  var { fecha, soloHora, soloMin } = actualizarFechaHora();
+  let min = soloMin;
+  date.innerHTML = `${fecha}`;
+  if (min < 10) {
+    time.innerHTML = `${soloHora}:0${soloMin}`;
+  } else {
+    time.innerHTML = `${soloHora}:${soloMin}`;
   }
-  else{
-    time.innerHTML=`${soloHora}:${soloMin}`;
-  }
-  
+
   fondoClima(soloHora);
- 
+
   obtenerUbicacion()
-    .then(coords => {
+    .then((coords) => {
       const [lat, long] = coords;
-      callClima(Math.round(lat*10000)/10000, Math.round(long*10000)/10000);
-      
+      callClima(
+        Math.round(lat * 10000) / 10000,
+        Math.round(long * 10000) / 10000
+      );
     })
-    .catch(error => {
+    .catch((error) => {
       console.error(error);
     });
-
 
   function obtenerUbicacion() {
     return new Promise((resolve, reject) => {
       if ("geolocation" in navigator) {
-        navigator.geolocation.getCurrentPosition(function (position) {
-          var lat = position.coords.latitude;
-          var long = position.coords.longitude;
-          resolve([lat, long]);
-        }, function (error) {
-          switch (error.code) {
-            case error.PERMISSION_DENIED:
-              reject("El usuario denegó la solicitud de geolocalización.");
-              break;
-            case error.POSITION_UNAVAILABLE:
-              reject("La información de la ubicación no está disponible.");
-              break;
-            case error.TIMEOUT:
-              reject("Se agotó el tiempo de espera para obtener la ubicación.");
-              break;
-            case error.UNKNOWN_ERROR:
-              reject("Se produjo un error desconocido al obtener la ubicación.");
-              break;
+        navigator.geolocation.getCurrentPosition(
+          function (position) {
+            var lat = position.coords.latitude;
+            var long = position.coords.longitude;
+            resolve([lat, long]);
+          },
+          function (error) {
+            switch (error.code) {
+              case error.PERMISSION_DENIED:
+                reject("El usuario denegó la solicitud de geolocalización.");
+                break;
+              case error.POSITION_UNAVAILABLE:
+                reject("La información de la ubicación no está disponible.");
+                break;
+              case error.TIMEOUT:
+                reject(
+                  "Se agotó el tiempo de espera para obtener la ubicación."
+                );
+                break;
+              case error.UNKNOWN_ERROR:
+                reject(
+                  "Se produjo un error desconocido al obtener la ubicación."
+                );
+                break;
+            }
           }
-        });
+        );
       } else {
         reject("La geolocalización no está disponible en tu navegador.");
       }
     });
   }
 
-  function actualizarFechaHora(){
-    let fec_h= new Date();
-    let opcForm={ year: 'numeric', month: 'long', day: 'numeric' };
-    let formato= new Intl.DateTimeFormat('es-ES', opcForm);
-    let fecha=formato.format(fec_h);
-    let soloHora=fec_h.getHours();
-    let soloMin=fec_h.getMinutes();
-    return {fecha,soloHora,soloMin};
+  function actualizarFechaHora() {
+    let fec_h = new Date();
+    let opcForm = { year: "numeric", month: "long", day: "numeric" };
+    let formato = new Intl.DateTimeFormat("es-ES", opcForm);
+    let fecha = formato.format(fec_h);
+    let soloHora = fec_h.getHours();
+    let soloMin = fec_h.getMinutes();
+    return { fecha, soloHora, soloMin };
   }
-  function fondoClima(hora){
-    if(6<=hora&&hora<17){
-      fondo.style.background="rgb(1,0,133)";
-      fondo.style.background="-moz-linear-gradient(0deg, rgba(1,0,133,1) 0%, rgba(0,209,255,1) 50%, rgba(253,255,188,1) 100%)";
-      fondo.style.background="-webkit-linear-gradient(0deg, rgba(1,0,133,1) 0%, rgba(0,209,255,1) 50%, rgba(253,255,188,1) 100%)";
-      fondo.style.background="linear-gradient(0deg, rgba(1,0,133,1) 0%, rgba(0,209,255,1) 50%, rgba(253,255,188,1) 100%)";
+  function fondoClima(hora) {
+    if (6 <= hora && hora < 17) {
+      fondo.style.background = "rgb(1,0,133)";
+      fondo.style.background =
+        "-moz-linear-gradient(0deg, rgba(1,0,133,1) 0%, rgba(0,209,255,1) 50%, rgba(253,255,188,1) 100%)";
+      fondo.style.background =
+        "-webkit-linear-gradient(0deg, rgba(1,0,133,1) 0%, rgba(0,209,255,1) 50%, rgba(253,255,188,1) 100%)";
+      fondo.style.background =
+        "linear-gradient(0deg, rgba(1,0,133,1) 0%, rgba(0,209,255,1) 50%, rgba(253,255,188,1) 100%)";
+    } else {
+      if (17 <= hora && hora < 19) {
+        fondo.style.background = "rgb(255,190,43)";
+        fondo.style.background =
+          "-moz-linear-gradient(0deg, rgba(255,190,43,1) 0%, rgba(249,224,168,1) 18%, rgba(151,166,251,1) 59%, rgba(66,95,255,1) 100%)";
+        fondo.style.background =
+          "-webkit-linear-gradient(0deg, rgba(255,190,43,1) 0%, rgba(249,224,168,1) 18%, rgba(151,166,251,1) 59%, rgba(66,95,255,1) 100%)";
+        fondo.style.background =
+          "linear-gradient(0deg, rgba(255,190,43,1) 0%, rgba(249,224,168,1) 18%, rgba(151,166,251,1) 59%, rgba(66,95,255,1) 100%)";
+      } else {
+        if (19 <= hora && hora <= 23) {
+          fondo.style.background = "rgb(99,127,158)";
+          fondo.style.background =
+            "-moz-linear-gradient(0deg, rgba(99,127,158,1) 0%, rgba(98,129,185,1) 33%, rgba(65,84,148,1) 61%, rgba(41,56,106,1) 100%)";
+          fondo.style.background =
+            "-webkit-linear-gradient(0deg, rgba(99,127,158,1) 0%, rgba(98,129,185,1) 33%, rgba(65,84,148,1) 61%, rgba(41,56,106,1) 100%)";
+          fondo.style.background =
+            "linear-gradient(0deg, rgba(99,127,158,1) 0%, rgba(98,129,185,1) 33%, rgba(65,84,148,1) 61%, rgba(41,56,106,1) 100%)";
+        } else {
+          fondo.style.background = "rgb(99,127,158)";
+          fondo.style.background =
+            "-moz-linear-gradient(0deg, rgba(99,127,158,1) 0%, rgba(98,129,185,1) 33%, rgba(65,84,148,1) 61%, rgba(41,56,106,1) 100%)";
+          fondo.style.background =
+            "-webkit-linear-gradient(0deg, rgba(99,127,158,1) 0%, rgba(98,129,185,1) 33%, rgba(65,84,148,1) 61%, rgba(41,56,106,1) 100%)";
+          fondo.style.background =
+            "linear-gradient(0deg, rgba(99,127,158,1) 0%, rgba(98,129,185,1) 33%, rgba(65,84,148,1) 61%, rgba(41,56,106,1) 100%)";
+        }
+      }
     }
-    else {
-      if(17<=hora&&hora<19){
-        fondo.style.background="rgb(255,190,43)";
-        fondo.style.background="-moz-linear-gradient(0deg, rgba(255,190,43,1) 0%, rgba(249,224,168,1) 18%, rgba(151,166,251,1) 59%, rgba(66,95,255,1) 100%)";
-        fondo.style.background="-webkit-linear-gradient(0deg, rgba(255,190,43,1) 0%, rgba(249,224,168,1) 18%, rgba(151,166,251,1) 59%, rgba(66,95,255,1) 100%)";
-        fondo.style.background="linear-gradient(0deg, rgba(255,190,43,1) 0%, rgba(249,224,168,1) 18%, rgba(151,166,251,1) 59%, rgba(66,95,255,1) 100%)";}
-      else {
-        if(19<=hora&&hora<=23){
-          fondo.style.background="rgb(99,127,158)";
-          fondo.style.background="-moz-linear-gradient(0deg, rgba(99,127,158,1) 0%, rgba(98,129,185,1) 33%, rgba(65,84,148,1) 61%, rgba(41,56,106,1) 100%)";
-          fondo.style.background="-webkit-linear-gradient(0deg, rgba(99,127,158,1) 0%, rgba(98,129,185,1) 33%, rgba(65,84,148,1) 61%, rgba(41,56,106,1) 100%)";
-          fondo.style.background="linear-gradient(0deg, rgba(99,127,158,1) 0%, rgba(98,129,185,1) 33%, rgba(65,84,148,1) 61%, rgba(41,56,106,1) 100%)";}
-        else{
-          fondo.style.background="rgb(99,127,158)";
-          fondo.style.background="-moz-linear-gradient(0deg, rgba(99,127,158,1) 0%, rgba(98,129,185,1) 33%, rgba(65,84,148,1) 61%, rgba(41,56,106,1) 100%)";
-          fondo.style.background="-webkit-linear-gradient(0deg, rgba(99,127,158,1) 0%, rgba(98,129,185,1) 33%, rgba(65,84,148,1) 61%, rgba(41,56,106,1) 100%)";
-          fondo.style.background="linear-gradient(0deg, rgba(99,127,158,1) 0%, rgba(98,129,185,1) 33%, rgba(65,84,148,1) 61%, rgba(41,56,106,1) 100%)";}}}
   }
 
   function callClima(lat, long) {
@@ -100,50 +132,55 @@ window.onload = function () {
     const resul1 = fetch(urlClima);
     const resul2 = fetch(urlUbi_exacta);
     Promise.all([resul1, resul2])
-      .then(responses => {
+      .then((responses) => {
         const respuesta1 = responses[0];
         const respuesta2 = responses[1];
 
         if (respuesta1.ok && respuesta2.ok) {
           return Promise.all([respuesta1.json(), respuesta2.json()]);
         } else {
-          throw new Error('Una o ambas solicitudes fallacon');
+          throw new Error("Una o ambas solicitudes fallacon");
         }
       })
-      .then(dataArray => {
+      .then((dataArray) => {
         const data1 = dataArray[0];
         const data2 = dataArray[1];
 
-        console.log('Datos de la primera solicitud:', data1);
-        const {id,main:{feels_like,humidity,temp,temp_max,temp_min},weather,sys:{sunrise,sunset}}=data1;
+        console.log("Datos de la primera solicitud:", data1);
+        const {
+          id,
+          main: { feels_like, humidity, temp, temp_max, temp_min },
+          weather,
+          sys: { sunrise, sunset },
+        } = data1;
         const tem = Math.floor(temp - 273.15);
         const tem_mx = Math.floor(temp_max - 273.15);
         const tem_mn = Math.floor(temp_min - 273.15);
-        const sensn=Math.floor(feels_like - 273.15);
-        tem_min.innerHTML=`${tem_mn}°`;
-        tem_max.innerHTML=`${tem_mx}°`;
-        sen.innerHTML=`${sensn}°`;
-        hum.innerHTML=`${humidity}%`;
-        let urlIcon=`https://openweathermap.org/img/wn/${weather[0].icon}@2x.png`;
-        let Icono = document.createElement('img');
-        let p_des = document.createElement('p');
-        Icono.src=urlIcon;
-        p_des.innerHTML=weather[0].description;
-        Icono.style.maxWidth="6em";
-        range_clima.appendChild(Icono)
+        const sensn = Math.floor(feels_like - 273.15);
+        tem_min.innerHTML = `${tem_mn}°`;
+        tem_max.innerHTML = `${tem_mx}°`;
+        sen.innerHTML = `${sensn}°`;
+        hum.innerHTML = `${humidity}%`;
+        let urlIcon = `https://openweathermap.org/img/wn/${weather[0].icon}@2x.png`;
+        let Icono = document.createElement("img");
+        let p_des = document.createElement("p");
+        Icono.src = urlIcon;
+        p_des.innerHTML = weather[0].description;
+        Icono.style.maxWidth = "6em";
+        range_clima.appendChild(Icono);
         range_clima.appendChild(p_des);
         const distrito = data2[0].name;
-        console.log('Datos de la segunda solicitud:', data2[0]);
-        ubc.innerHTML=distrito+` ${tem}°C`;
+        console.log("Datos de la segunda solicitud:", data2[0]);
+        ubc.innerHTML = distrito + ` ${tem}°C`;
         const { lat, lon } = data2[0];
-        var{hAma,hAta,mAma,mAta}=mostrarS(sunrise,sunset,lat,lon);
-        sunR.innerHTML=`${hAma}:${mAma}`;
-        sunS.innerHTML=`${hAta}:${mAta}`;
+        var { hAma, hAta, mAma, mAta } = mostrarS(sunrise, sunset, lat, lon);
+        sunR.innerHTML = `${hAma}:${mAma}`;
+        sunS.innerHTML = `${hAta}:${mAta}`;
         infoGoogle(lat, lon);
-        enl.setAttribute("href",`https://openweathermap.org/city/${id}`);
+        enl.setAttribute("href", `https://openweathermap.org/city/${id}`);
       })
-      .catch(error => {
-        console.error('Error:', error);
+      .catch((error) => {
+        console.error("Error:", error);
       });
   }
 
@@ -152,30 +189,30 @@ window.onload = function () {
     const urlInfo = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lon}&key=${googleApiKey}`;
 
     fetch(urlInfo)
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         if (data.status === "OK") {
           // Obtiene la información del lugar
           const resultados = data.results;
           console.log(resultados);
-          const dato1 = resultados[resultados.length-2].address_components[0].long_name;
-          const dato2 = resultados[resultados.length-2].formatted_address;
-          depa.innerHTML=`${dato2}`.toUpperCase();
-
+          const dato1 =
+            resultados[resultados.length - 2].address_components[0].long_name;
+          const dato2 = resultados[resultados.length - 2].formatted_address;
+          depa.innerHTML = `${dato2}`.toUpperCase();
         } else {
           console.log("La solicitud no tuvo éxito.");
         }
       })
-      .catch(error => {
+      .catch((error) => {
         console.error("Hubo un error al realizar la solicitud:", error);
       });
   }
 
-  function mostrarS(sR,sS,lat,lon){
-    const fechaR = new Date(sR*1000);
-    const fechaS = new Date(sS*1000);
-    const saleSol=suncalc.getTimes(fechaR,lat,lon);
-    const puestaSol=suncalc.getTimes(fechaS,lat,lon);
+  function mostrarS(sR, sS, lat, lon) {
+    const fechaR = new Date(sR * 1000);
+    const fechaS = new Date(sS * 1000);
+    const saleSol = suncalc.getTimes(fechaR, lat, lon);
+    const puestaSol = suncalc.getTimes(fechaS, lat, lon);
 
     const amanecer = saleSol.sunrise;
     const atardecer = puestaSol.sunset;
@@ -184,6 +221,6 @@ window.onload = function () {
     const mAma = amanecer.getMinutes();
     const hAta = atardecer.getHours();
     const mAta = atardecer.getMinutes();
-    return {hAma,hAta,mAma,mAta};
+    return { hAma, hAta, mAma, mAta };
   }
 };
